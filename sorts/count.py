@@ -1,17 +1,25 @@
-from cgitb import reset
+def sort(tab: List):
+    n = len(tab)
+    output = [0] * n
+    count = [0] * 10
+
+    for i in range(0, n):
+        count[tab[i]] += 1
+
+    for i in range(0, 10):
+        count[i] += count[i - 1]
+
+    i = n - 1
+    while i >= 0:
+        output[count[tab[i]] - 1] = tab[i]
+        count[tab[i]] -= 1 # Decrementing so we can allow duplicates
+        i -= 1
+
+    for i in range(0, n):
+        tab[i] = output[i]
+
+    return tab
 
 
-def count_sort(tab, n):
-    res = [0 for _ in tab]
-
-    for i in range(len(res) - 1):
-        res[tab[i]] += 1
-
-    print(res)
-    return res
-
-data = [1,3,2,1,1,3,3,2,2,4,1,1,3,3,4]
-if count_sort(data, 10) == sorted(data):
-    print('sorted')
-else:
-    print("nope")
+data = [4, 2, 2, 8, 3, 3, 1]
+print(sort(data))
