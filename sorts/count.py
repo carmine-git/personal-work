@@ -1,4 +1,4 @@
-def sort(tab: List):
+def sort(tab):
     n = len(tab)
     output = [0] * n
     count = [0] * 10
