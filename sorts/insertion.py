@@ -1,22 +1,20 @@
-# iteration
-def insertion_sort(tab):
-    for i in range(1, len(tab)):
-        key = tab[i]
-        j = i - 1
+from msilib.schema import tables
 
-        while j >= 0 and tab[j] > key:
-            tab[j + 1] = tab[j]
+
+def sort(enum):
+    n = len(enum)
+
+    for step in range(1, n):
+        key = enum[step]
+        j = step - 1
+
+        while j >= 0 and key < enum[j]:
+            enum[j + 1] = enum[j]
             j -= 1
 
-    print("sorted")
-    tab[j + 1] = key
-    
-    return tab
+        enum[j+1] = key
 
-# driver code
+    return enum
 
-data = [7,8,4,6,3,2,1,7,9,5,6,3,1,8]
-if insertion_sort(tab=data) == sorted(key=data):
-    print('sorted')
-else:
-    print('nope')
+data = [9,1,6,3,4,2,5,8,3,7]
+print(sort(data))
