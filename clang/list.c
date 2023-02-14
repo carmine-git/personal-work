@@ -26,7 +26,7 @@ void print_list_iteratively(struct Node *node)
 {
   printf("\n[");
 
-  while (node != NULL)
+  while (node->next != NULL)
   {
     printf("%d, ", node->value);
     node = node->next;
@@ -215,25 +215,29 @@ int main()
   struct Node *first_list = NULL;
   struct Node *second_list = NULL;
 
+  printf("Original lists");
   create_list(&first_list, 5);
+  insert_at_head(&first_list, 78);
   print_list_iteratively(first_list);
 
   create_list(&second_list, 10);
   insert_at_head(&second_list, 45);
   insert_at_head(&second_list, 23);
-
   print_list_iteratively(second_list);
-
-  insert_at_head(&first_list, 78);
-  print_list_iteratively(first_list);
 
   bubble_sort_list(&first_list);
   bubble_sort_list(&second_list);
 
+  printf("\n\nLists after being bubble sorted");
   print_list_iteratively(second_list);
   print_list_iteratively(first_list);
 
+  printf("\n\nThe first list after binding it to the second list");
   bind_both_list(&first_list, second_list);
+  print_list_iteratively(first_list);
+
+  printf("\n\nThe mutated first list after reversing it");
+  reverse_list(&first_list);
   print_list_iteratively(first_list);
   return 0;
 }
