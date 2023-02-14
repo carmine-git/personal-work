@@ -10,15 +10,23 @@ struct Node
 };
 
 // 3
-struct Node *create_list(struct Node **node, int number_of_nodes)
+struct Node *create_list_ints(struct Node **node, int number_of_nodes)
 {
-  for (int i = 0; i <= number_of_nodes; i++)
+  int user_input;
+  int iterator = 0;
+  int remaining_nodes_to_input = number_of_nodes;
+
+  do
   {
     struct Node *temp = (struct Node *)malloc(sizeof(struct Node *));
-    temp->value = i;
+    printf("Please enter the value of the %d-th node (remaining: %d):", iterator, remaining_nodes_to_input);
+    scanf("%d", &user_input);
+    temp->value = user_input;
     temp->next = *node;
     *node = temp;
-  }
+    iterator++;
+    remaining_nodes_to_input--;
+  } while (iterator <= number_of_nodes);
 }
 
 // 4
@@ -215,14 +223,15 @@ int main()
   struct Node *first_list = NULL;
   struct Node *second_list = NULL;
 
-  printf("Original lists");
-  create_list(&first_list, 5);
+  create_list_ints(&first_list, 5);
   insert_at_head(&first_list, 78);
-  print_list_iteratively(first_list);
 
-  create_list(&second_list, 10);
+  create_list_ints(&second_list, 10);
   insert_at_head(&second_list, 45);
   insert_at_head(&second_list, 23);
+
+  printf("Original lists");
+  print_list_iteratively(first_list);
   print_list_iteratively(second_list);
 
   bubble_sort_list(&first_list);
