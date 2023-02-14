@@ -10,7 +10,7 @@ struct Node
 };
 
 // 3
-struct Node *create_list_ints(struct Node **node, int number_of_nodes)
+struct Node *create_list(struct Node **node, int number_of_nodes)
 {
   int user_input;
   int iterator = 0;
@@ -223,10 +223,10 @@ int main()
   struct Node *first_list = NULL;
   struct Node *second_list = NULL;
 
-  create_list_ints(&first_list, 5);
+  create_list(&first_list, 5);
   insert_at_head(&first_list, 78);
 
-  create_list_ints(&second_list, 10);
+  create_list(&second_list, 10);
   insert_at_head(&second_list, 45);
   insert_at_head(&second_list, 23);
 
