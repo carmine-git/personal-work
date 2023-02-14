@@ -9,8 +9,8 @@ struct Node
   struct Node *next;
 };
 
-// 3
-struct Node *create_list_ints(struct Node **node, int number_of_nodes)
+// exercice 5
+struct Node *create_list(struct Node **node, int number_of_nodes)
 {
   int user_input;
   int iterator = 0;
@@ -222,11 +222,12 @@ int main()
   // 2
   struct Node *first_list = NULL;
   struct Node *second_list = NULL;
+  struct NodeChar *third_list = NULL;
 
-  create_list_ints(&first_list, 5);
+  create_list_ints(&first_list, 3);
   insert_at_head(&first_list, 78);
 
-  create_list_ints(&second_list, 10);
+  create_list_ints(&second_list, 3);
   insert_at_head(&second_list, 45);
   insert_at_head(&second_list, 23);
 
