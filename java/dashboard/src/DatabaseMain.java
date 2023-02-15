@@ -7,7 +7,6 @@ public class DatabaseMain {
   private DatabaseUser user;
   DatabaseConnectionBuilder connectionBuilder;
   private Connection connection;
-  private Statement st;
   private static final Logger LOGGER = Logger.getLogger(
     DatabaseMain.class.getName()
   );
@@ -56,11 +55,10 @@ public class DatabaseMain {
     if (status.isConnected()) {
       LOGGER.info(String.format("Connecté à la base de donnée"));
       try {
-        this.st =
-          this.connection.createStatement(
-              ResultSet.TYPE_SCROLL_INSENSITIVE,
-              ResultSet.CONCUR_UPDATABLE
-            );
+        this.connection.createStatement(
+            ResultSet.TYPE_SCROLL_INSENSITIVE,
+            ResultSet.CONCUR_UPDATABLE
+          );
       } catch (Exception e) {
         System.out.println(e);
       }

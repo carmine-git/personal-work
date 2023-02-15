@@ -10,14 +10,9 @@ public class Class_GUI {
   String SaveLogin = "";
   String SavePassword = "";
 
-  //Jtable:
-
+  // --------------------- VARIABLES GLOBALES
   JTable Table = new JTable();
-
-  // Other:
-
   int uniqueID = new Random().nextInt(1_000_000_000);
-
   JFrame Frame = new JFrame("Patch_DataBases");
   JScrollPane TableScroll = new JScrollPane(Table);
   JPanel PanelButtons = new JPanel();
@@ -51,7 +46,6 @@ public class Class_GUI {
   JLabel info5 = new JLabel("NONE");
 
   // ---------------------- GESTION BDD
-
   private DatabaseMain database;
   private Connection connection;
 
@@ -177,7 +171,7 @@ public class Class_GUI {
     SetSQLToTable(data, columnName);
   }
 
-  protected void SetSQLToTable(Vector SQLdata, Vector SQLcolumn) { //N'oublie pas de changer le type des paramètres en <Vector>
+  protected void SetSQLToTable(Vector SQLdata, Vector SQLcolumn) {
     DefaultTableModel MyModelTable = new DefaultTableModel(SQLdata, SQLcolumn);
     Table.setModel(MyModelTable);
     Table.repaint();
