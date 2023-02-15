@@ -1,6 +1,3 @@
-from typing import List
-
-
 def sort(tab):
     n = len(tab)
     sort_check = True
