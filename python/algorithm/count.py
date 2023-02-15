@@ -12,7 +12,7 @@ def sort(tab):
     i = n - 1
     while i >= 0:
         output[count[tab[i]] - 1] = tab[i]
-        count[tab[i]] -= 1 # Decrementing so we can allow duplicates
+        count[tab[i]] -= 1  # Decrementing so we can allow duplicates
         i -= 1
 
     for i in range(0, n):

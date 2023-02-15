@@ -14,20 +14,15 @@ def partition(tab, low, high):
 
 def quick_sort(tab, low, high):
     if low < high:
-        pi = partition(tab, low , high)
+        pi = partition(tab, low, high)
         quick_sort(tab, low, pi - 1)
         quick_sort(tab, pi + 1, high)
     return tab
 
 
-data = [25,41,63,78,96,15,26,63,45,78,96,32,65,48,75]
+data = [25, 41, 63, 78, 96, 15, 26, 63, 45, 78, 96, 32, 65, 48, 75]
 print(f'Before sort: {data}')
 
 sort = quick_sort(data, 0, len(data) - 1)
 
 print(f'After sort: {sort}')
-
-
-        
-
-

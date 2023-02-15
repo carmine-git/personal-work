@@ -1,6 +1,6 @@
 def count_sort(tab, base):
     n = len(tab)
-    
+
     # initialize arrays with 0's
     output = [0] * n
     count = [0] * 10
@@ -16,9 +16,9 @@ def count_sort(tab, base):
 
     while i >= 0:
         index = tab[i] / base
-        output[ count[int(index % 10)] - 1 ] = tab[i]
+        output[count[int(index % 10)] - 1] = tab[i]
         count[int(index % 10)] -= 1
-        i -= 1 
+        i -= 1
 
     for u in range(0, len(tab)):
         tab[u] = output[u]
@@ -34,5 +34,7 @@ def radix_sort(arr):
 
     return arr
 
-data = [25,41,63,78,96,15,26,63,45,78,96,32,65,48,75,465,852,159,369,789]
+
+data = [25, 41, 63, 78, 96, 15, 26, 63, 45, 78,
+        96, 32, 65, 48, 75, 465, 852, 159, 369, 789]
 print(radix_sort(data))

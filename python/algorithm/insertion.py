@@ -1,6 +1,3 @@
-from msilib.schema import tables
-
-
 def sort(enum):
     n = len(enum)
 
@@ -16,5 +13,6 @@ def sort(enum):
 
     return enum
 
-data = [9,1,6,3,4,2,5,8,3,7]
+
+data = [9, 1, 6, 3, 4, 2, 5, 8, 3, 7]
 print(sort(data))

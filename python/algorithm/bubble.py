@@ -12,9 +12,10 @@ def sort(tab):
                 sort_check = False
         if sort_check:
             break
-    
+
     return tab
 
-data = [17,28,39,79,46,13,15,26]
+
+data = [17, 28, 39, 79, 46, 13, 15, 26]
 s = sort(data)
 print(s)
