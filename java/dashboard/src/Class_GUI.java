@@ -51,7 +51,7 @@ public class Class_GUI {
 
   public Class_GUI(int val) {
     var databaseStatus = new DatabaseStatus();
-    var databaseUser = new DatabaseUser("amaryllis", "RdD5i9KQOheSgh#$oxCM");
+    var databaseUser = new DatabaseUser("amaryllis", "");
     var databaseConnectionBuilder = new DatabaseConnectionBuilder()
       .setPort(3306)
       .setSchema("tableaudebord");
