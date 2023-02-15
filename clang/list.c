@@ -156,8 +156,8 @@ void bubble_sort_list(struct Node **node) {
 
   for (int i = 0; i <= length; i++) {
     struct Node *node_to_sort = *node;
-    while (node_to_sort->next != NULL) {
 
+    while (node_to_sort->next != NULL) {
       if (node_to_sort->value > node_to_sort->next->value) {
         swap_nodes(&node_to_sort, &node_to_sort->next);
         swapped = true;
