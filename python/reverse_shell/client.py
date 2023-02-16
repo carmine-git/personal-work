@@ -7,17 +7,26 @@ def client_connection_script():
 
     client = socket()
     client.connect((host, port))
-
-    message = input(" -> ")
-
     nick = str(input("Enter your nickname here: "))
 
-    while message.lower().strip() != "/bye":
-        client.send(message.encode())
+    print(f"Coucou {nick}")
+
+    while True:
+        message = input(f"{nick}: ")
+
+        if message == "/bye":
+            break
+
+        if message.startswith("/nick"):
+            new_nickname = message.split(" ")[1]
+            nick = new_nickname
+
+        format_messge = f"{nick}: {message}"
+
+        client.send(format_messge.encode())
         data = client.recv(1024).decode()
 
-        print("Received from server: " + data)
-        message = input(f"{nick} -> ")
+        print(data)
 
     client.close()
 
