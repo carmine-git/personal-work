@@ -51,7 +51,7 @@ public class Class_GUI {
 
   public Class_GUI(int val) {
     var databaseStatus = new DatabaseStatus();
-    var databaseUser = new DatabaseUser("amaryllis", "");
+    var databaseUser = new DatabaseUser("amaryllis", "RdD5i9KQOheSgh#$oxCM");
     var databaseConnectionBuilder = new DatabaseConnectionBuilder()
       .setPort(3306)
       .setSchema("tableaudebord");
@@ -348,6 +348,33 @@ public class Class_GUI {
                       "UPDATE `tableaudebord`.`professeur` SET `Accepted` = 'true' WHERE (`name` = '%s')",
                       studentNameValue
                     );
+                    st.execute(query);
+                    SetSQLValueToVariable(
+                      "SELECT * FROM tableaudebord.professeur",
+                      SaveLogin,
+                      SavePassword,
+                      "null"
+                    );
+                  } catch (Exception err) {
+                    System.out.println(err);
+                  }
+
+                  return;
+                } else if (!VerifiedCheckbox.isSelected()) {
+                  int column = 0;
+                  int row = Table.getSelectedRow();
+
+                  String studentNameValue = Table
+                    .getModel()
+                    .getValueAt(row, column)
+                    .toString();
+
+                  try {
+                    String query = String.format(
+                      "UPDATE `tableaudebord`.`professeur` SET `Accepted` = 'false' WHERE (`name` = '%s')",
+                      studentNameValue
+                    );
+
                     st.execute(query);
                     SetSQLValueToVariable(
                       "SELECT * FROM tableaudebord.professeur",
