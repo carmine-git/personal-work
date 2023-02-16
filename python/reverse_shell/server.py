@@ -4,8 +4,10 @@ from socket import AF_INET, SOCK_STREAM, socket, gethostname
 def server_connection_script():
     host = gethostname()
     port = 8080
+
     server = socket()
     server.bind((host, port))
+
     server.listen(2)
 
     with server.accept() as connection, server.accept() as address:
