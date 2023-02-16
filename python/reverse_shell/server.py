@@ -1,4 +1,4 @@
-from socket import AF_INET, SOCK_STREAM, socket, gethostname
+from socket import socket, gethostname
 
 
 def server_connection_script():
@@ -10,16 +10,19 @@ def server_connection_script():
 
     server.listen(2)
 
-    with server.accept() as connection, server.accept() as address:
-        print(f"Connection: {str(address)}")
+    connection, address = server.accept()
 
-        while True:
-            data = connection.recv(1024).decode()
-            if not data:
-                break
-            print("Connected user's data " + str(data))
-            data = input("  =>  ")
-            connection.send(data.encode())
+    print(f"Connection: {str(address)}")
+
+    while True:
+        data = connection.recv(1024).decode()
+        if not data:
+            break
+        print("Connected user's data " + str(data))
+        data = input("  =>  ")
+        connection.send(data.encode())
+
+    connection.close()
 
 
 if __name__ == "__main__":

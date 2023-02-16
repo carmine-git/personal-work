@@ -3,22 +3,23 @@ from socket import socket, gethostname
 
 def client_connection_script():
     host = gethostname()
-    port = 5000
+    port = 8080
 
     client = socket()
+    client.connect((host, port))
 
-    with socket() as client:
-        client.connect((host, port))
+    message = input(" -> ")
 
-        message = input(" -> ")
+    nick = str(input("Enter your nickname here: "))
 
-        while message.lower().strip() != "bye":
-            client.send(message.encode())
-            data = client.recv(1024).decode()
+    while message.lower().strip() != "/bye":
+        client.send(message.encode())
+        data = client.recv(1024).decode()
 
-            print("Received from server: " + data)
+        print("Received from server: " + data)
+        message = input(f"{nick} -> ")
 
-            message = input(" -> ")
+    client.close()
 
 
 if __name__ == "__main__":
