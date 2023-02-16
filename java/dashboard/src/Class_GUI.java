@@ -29,7 +29,7 @@ public class Class_GUI {
   JLabel LabelDescriptionOfPanel = new JLabel("Add project to table.");
   JCheckBox VerifiedCheckbox = new JCheckBox("Vérifier");
   String[] option = { "None", "Supprimer", "Modifier" };
-  JComboBox comboBox = new JComboBox(option);
+  JComboBox<Object> comboBox = new JComboBox<Object>(option);
 
   JButton Afficher = new JButton("Afficher");
 
@@ -134,8 +134,8 @@ public class Class_GUI {
       return;
     }
 
-    Vector data = new Vector();
-    Vector columnName = new Vector();
+    Vector<Vector<Object>> data = new Vector<Vector<Object>>();
+    Vector<Object> columnName = new Vector<Object>();
 
     try {
       Statement st =
@@ -153,7 +153,7 @@ public class Class_GUI {
       }
 
       while (rs.next()) {
-        Vector row = new Vector(numcol);
+        Vector<Object> row = new Vector<Object>(numcol);
 
         for (int i = 1; i <= numcol; i++) {
           row.addElement(rs.getObject(i));
@@ -171,7 +171,10 @@ public class Class_GUI {
     SetSQLToTable(data, columnName);
   }
 
-  protected void SetSQLToTable(Vector SQLdata, Vector SQLcolumn) {
+  protected void SetSQLToTable(
+    Vector<Vector<Object>> SQLdata,
+    Vector<Object> SQLcolumn
+  ) {
     DefaultTableModel MyModelTable = new DefaultTableModel(SQLdata, SQLcolumn);
     Table.setModel(MyModelTable);
     Table.repaint();
@@ -334,6 +337,36 @@ public class Class_GUI {
 
             if (SaveLogin.equalsIgnoreCase("professeur")) {
               if (content.equals("Modifier")) {
+                if (TextDescription.getText() != null) {
+                  int column = 0;
+                  int row = Table.getSelectedRow();
+
+                  String studentNameValue = Table
+                    .getModel()
+                    .getValueAt(row, column)
+                    .toString();
+
+                  String textDescription = TextDescription.getText();
+
+                  try {
+                    String query = String.format(
+                      "UPDATE `tableaudebord`.`professeur` SET `NoteProfessor` = '%s' WHERE (`name` = '%s')",
+                      textDescription,
+                      studentNameValue
+                    );
+                    st.execute(query);
+                    SetSQLValueToVariable(
+                      "SELECT * FROM tableaudebord.professeur",
+                      SaveLogin,
+                      SavePassword,
+                      "null"
+                    );
+                  } catch (Exception err) {
+                    System.out.println(err);
+                  }
+
+                  return;
+                }
                 if (VerifiedCheckbox.isSelected()) {
                   int column = 0;
                   int row = Table.getSelectedRow();
@@ -387,33 +420,6 @@ public class Class_GUI {
                   }
 
                   return;
-                }
-
-                int column = 0;
-                int row = Table.getSelectedRow();
-
-                String studentNameValue = Table
-                  .getModel()
-                  .getValueAt(row, column)
-                  .toString();
-
-                String textDescription = TextDescription.getText();
-
-                try {
-                  String query = String.format(
-                    "UPDATE `tableaudebord`.`professeur` SET `NoteProfessor` = '%s' WHERE (`name` = '%s')",
-                    textDescription,
-                    studentNameValue
-                  );
-                  st.execute(query);
-                  SetSQLValueToVariable(
-                    "SELECT * FROM tableaudebord.professeur",
-                    SaveLogin,
-                    SavePassword,
-                    "null"
-                  );
-                } catch (Exception err) {
-                  System.out.println(err);
                 }
               } else if (content.equals("Supprimer")) {
                 try {

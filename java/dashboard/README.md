@@ -1,18 +1,23 @@
-## Getting Started
+## Class_GUI
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+NB Methodes: 17 dont 1 constructeur
 
-## Folder Structure
+## Database
 
-The workspace contains two folders by default, where:
+Fichier main, instancie Class_GUI avec sa valeur par défaut (0)
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+## DatabaseConnectionBuilder
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+Fichier d'utilitaire pour construire le lien de connection à la base de données.
+Il sert aussi à obtenir ou/et ajouter des élément conceernant le lien de connection.
+Cette classe utiliser le design pattern builder d'ou le nom "DatabseConnectionBuilder
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+## DatabaseStatus
 
-## Dependency Management
+Fichier de gestion du status de la base de donnée, généralement si on est bien connecté à cellé-ci
+Afin d'eviter des crash ou des erreurs de connection sans pour autant savoir comment debugger
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+## DatabaseUser
+
+Fichier d'utilitaire pour crée un utilisateur afin de nous connecter à la base de donnée
+Aussi de récuperer des informations sur celui-ci si nécessaire.
