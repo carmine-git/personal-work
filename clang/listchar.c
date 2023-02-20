@@ -7,30 +7,22 @@ struct Node {
   struct Node *next;
 };
 
-struct Node *create_list(struct Node **node, int number_of_nodes) {
-  char user_input;
-  int iterator = 0;
-  int remaining_nodes_to_input = number_of_nodes;
+void initialize(struct Node **node, int number_of_nodes) {
+  char input;
+  int i = 0;
 
-  for (iterator; iterator <= number_of_nodes; iterator++) {
+  do {
     struct Node *temp = (struct Node *)malloc(sizeof(struct Node *));
-    printf("Please enter the value of the %d-th node (remaining: %d):",
-           iterator, remaining_nodes_to_input);
-
-    if (!iterator) {
-      scanf("%c", &user_input);
-    } else if (iterator) {
-      scanf(" %c", &user_input);
-    }
-
-    temp->value = user_input;
-    temp->next = *node;
-    *node = temp;
-    remaining_nodes_to_input--;
-  }
+		printf("Enter node: ");
+		scanf_s(" %c", &input);
+		temp->value = input;
+		temp->next = (* node);
+		(* node) = temp;
+		i++;
+  } while (i < number_of_nodes);
 }
 
-bool is_value_in_list(struct Node *node, char value) {
+bool include(struct Node *node, char value) {
   bool is_in_list = false;
 
   while (node != NULL) {
@@ -45,7 +37,7 @@ bool is_value_in_list(struct Node *node, char value) {
   return is_in_list;
 }
 
-void print_list_iteratively(struct Node *node) {
+void display(struct Node *node) {
   printf("\n[");
 
   while (node != NULL) {
@@ -56,7 +48,7 @@ void print_list_iteratively(struct Node *node) {
   printf("]");
 }
 
-int length_list(struct Node *node) {
+int length(struct Node *node) {
   if (node == NULL) {
     return 0;
   }
@@ -75,10 +67,7 @@ void remove_duplicates(struct Node **node) { return; }
 
 int main() {
   struct Node *list = NULL;
-  create_list(&list, 10);
-  print_list_iteratively(list);
-  remove_duplicates(&list);
-  print_list_iteratively(list);
-
+  initialize(&list, 3);
+  display(list);
   return 0;
 }
