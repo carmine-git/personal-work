@@ -12,20 +12,16 @@ struct Node {
 void create_list(struct Node **node, int number_of_nodes) {
   int user_input;
   int iterator = 0;
-  int remaining_nodes_to_input = number_of_nodes;
 
   do {
     struct Node *temp = (struct Node *)malloc(sizeof(struct Node *));
-    printf("Please enter the value of the %d-th node (remaining: %d):",
-           iterator, remaining_nodes_to_input);
+    printf("Enter node: ");
     scanf_s("%d", &user_input);
     temp->value = user_input;
     temp->next = *node;
     *node = temp;
     iterator++;
-    remaining_nodes_to_input--;
   } while (iterator <= number_of_nodes);
-
 }
 
 // 4
@@ -61,7 +57,7 @@ bool search_node_by_value_recursively(struct Node *node, int target_number) {
   }
 
   search_node_by_value_recursively(node->next, target_number);
-	return false; // Removes a warning
+  return false; // Removes a warning
 }
 
 // 6
