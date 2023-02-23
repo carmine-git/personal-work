@@ -44,7 +44,10 @@ void unthread(struct Queue **queue) {
 	free((*queue));
 	(*queue) = temp;
 }
-
+/** @brief dispalys the queue
+ * @peram queue the queue to display
+ * @return void
+ */
 void display(struct Queue *queue) {
 	if (queue == NULL) {
 		return;
