@@ -37,6 +37,20 @@ void display(struct Stack *stack) {
 	printf("]");
 }
 
+/** @Brief Unstack a data from the stack
+ * @param stack the stack that we will unstack
+ * @return void
+ */
+void unstack(struct Stack **stack) {
+	if (stack == NULL) {
+		return;
+	}
+
+	struct Stack *temp = (*stack)->previous;
+	free((*stack));
+	(*stack) = temp;
+}
+
 /** @brief Checks if the stack is empty
  * @param stack the stack to check
  * @return bool
@@ -51,6 +65,8 @@ int main() {
 	push(&stack, 45);
 	push(&stack, 86);
 	display(stack);
-  printf("%d", is_empty(stack));
+
+	unstack(&stack);
+	display(stack);
   return 0;
 }
