@@ -21,7 +21,7 @@ void thread(struct Queue **queue, int value) {
     (*queue) = data;
     return;
   } else {
-		struct Queue *temp = *queue;
+    struct Queue *temp = *queue;
 
     while (temp->next != NULL) {
       temp = temp->next;
@@ -36,49 +36,48 @@ void thread(struct Queue **queue, int value) {
  * @return void
  */
 void unthread(struct Queue **queue) {
-	if ((*queue) == NULL) {
-		return;
-	}
+  if ((*queue) == NULL) {
+    return;
+  }
 
-	struct Queue *temp = (*queue)->next;
-	free((*queue));
-	(*queue) = temp;
+  struct Queue *temp = (*queue)->next;
+  free((*queue));
+  (*queue) = temp;
 }
+
 /** @brief dispalys the queue
  * @peram queue the queue to display
  * @return void
  */
 void display(struct Queue *queue) {
-	if (queue == NULL) {
-		return;
-	}
+  if (queue == NULL) {
+    return;
+  }
 
-	printf("\n[");
+  printf("\n[");
 
-	while (queue != NULL) {
-		printf("%d, ", queue->value);
-		queue = queue->next;
-	}
+  while (queue != NULL) {
+    printf("%d, ", queue->value);
+    queue = queue->next;
+  }
 
-	printf("]");
+  printf("]");
 }
 
 /** @Brief Check if current queue is empty
  * @param queue the queue to check
  * @return bool
  */
-bool is_empty(struct Queue *queue) {
-	return queue == NULL;
-}
+bool is_empty(struct Queue *queue) { return queue == NULL; }
 
-int main (int argc, char* argv[]) {
-	struct Queue *queue = NULL;
-	thread(&queue, 5);
-	thread(&queue, 10);
-	thread(&queue, 15);
-	printf("%d", is_empty(queue));
-	display(queue);
-	unthread(&queue);
-	display(queue);
-	return 0; 
+int main(int argc, char *argv[]) {
+  struct Queue *queue = NULL;
+  thread(&queue, 5);
+  thread(&queue, 10);
+  thread(&queue, 15);
+  printf("%d", is_empty(queue));
+  display(queue);
+  unthread(&queue);
+  display(queue);
+  return 0;
 }
