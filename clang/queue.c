@@ -31,6 +31,20 @@ void thread(struct Queue **queue, int value) {
   }
 }
 
+/** @Brief removes an element from the thread
+ * @param queue the queue where we will remove an element
+ * @return void
+ */
+void unthread(struct Queue **queue) {
+	if ((*queue) == NULL) {
+		return;
+	}
+
+	struct Queue *temp = (*queue)->next;
+	free((*queue));
+	(*queue) = temp;
+}
+
 void display(struct Queue *queue) {
 	if (queue == NULL) {
 		return;
@@ -60,6 +74,8 @@ int main (int argc, char* argv[]) {
 	thread(&queue, 10);
 	thread(&queue, 15);
 	printf("%d", is_empty(queue));
+	display(queue);
+	unthread(&queue);
 	display(queue);
 	return 0; 
 }
