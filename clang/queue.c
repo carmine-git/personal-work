@@ -7,6 +7,11 @@ struct Queue {
   struct Queue *next;
 };
 
+struct pairs {
+  struct Queue *positives;
+  struct Queue *negatives;
+};
+
 /** @brief Threads the queue with different value
  *  @param queue the queue to thread
  *  @param value to value to thread in the queue
@@ -70,14 +75,37 @@ void display(struct Queue *queue) {
  */
 bool is_empty(struct Queue *queue) { return queue == NULL; }
 
+/* @Brief sorts positive and negative numbers in their respective queues
+ * @param queue the queue to sort
+ * @return struct PositiveAndNegativeQueue
+ */
+struct pairs sort(struct Queue *queue) {
+  struct Queue *negatives = NULL;
+  struct Queue *positives = NULL;
+
+  while (queue != NULL) {
+    if (queue->value >= 0) {
+      thread(&positives, queue->value);
+    } else {
+      thread(&negatives, queue->value);
+    }
+
+    queue = queue->next;
+  }
+	struct pairs pairs = {positives, negatives};
+  return pairs;
+}
+
 int main(int argc, char *argv[]) {
   struct Queue *queue = NULL;
+	struct pairs pairs;
   thread(&queue, 5);
   thread(&queue, 10);
   thread(&queue, 15);
-  printf("%d", is_empty(queue));
-  display(queue);
-  unthread(&queue);
-  display(queue);
+	thread(&queue, -5);
+	thread(&queue, -10);
+  pairs = sort(queue);
+	display(pairs.positives);
+	display(pairs.negatives);
   return 0;
 }
